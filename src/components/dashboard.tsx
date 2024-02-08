@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Box, Flex, Heading, Image, HStack, VStack, Input, Text, Checkbox, Button, Select, IconButton, Spacer, Divider, Spinner} from '@chakra-ui/react';
+// import { useEffect, useState } from 'react';
+import { Heading, Image, HStack, VStack, Input, Text, Button, Select, IconButton, Spacer, Divider, Spinner} from '@chakra-ui/react';
 import logo from "../assets/logo.png" 
 import { MdOutlineExitToApp, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdDashboard } from "react-icons/md";
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
@@ -14,7 +14,7 @@ const Dashboard = () => {
         // For now, just navigate to the "/dashboard" route
         navigate('/');
     };
-    
+
     return (
         <VStack h="100vh" p="3">
             <HStack h="3%" w="100%" justify="space-between">

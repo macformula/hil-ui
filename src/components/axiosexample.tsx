@@ -1,7 +1,7 @@
 
 import { Button } from "@chakra-ui/react";
 import getData from "../api/getData";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const AxiosExample = () => {
   const [data, setData] = useState<String>("hi")
