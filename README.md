@@ -1,4 +1,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c7536383-151b-461e-b86f-f5df27214aba/deploy-status)](https://app.netlify.com/sites/benevolent-cobbler-18e045/deploys)
+
+Site up at [dev.macformularacing.com](https://dev.macformularacing.com)
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
