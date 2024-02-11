@@ -1,4 +1,5 @@
-import { HStack, Text, Spacer, Button } from '@chakra-ui/react';
+import { HStack, Text, Spacer } from '@chakra-ui/react';
+import { TailSpin } from "react-loader-spinner";
 
 // Define the status enum
 export enum Status {
@@ -29,6 +30,8 @@ const Test: React.FC<TestProps> = ({ name, date, status }) => {
       case Status.Running:
         // return <Button size="xs" colorScheme="red">Cancel</Button>;
         return <Text textColor={formulaRed}>Cancel</Text>;
+      case Status.Queued:
+        return <TailSpin color={formulaRed} strokeWidth={4} height={30} width={30} radius={5} />;
       default:
         return null;
     }
@@ -40,7 +43,7 @@ const Test: React.FC<TestProps> = ({ name, date, status }) => {
       <Text size="sm">{name}</Text>
       <Spacer />
       <Text pr="2.5">{status}</Text>
-      {statusSymbol}
+      { statusSymbol }
     </HStack>
   );
 };
