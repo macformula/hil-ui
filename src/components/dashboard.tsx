@@ -1,8 +1,9 @@
 // import { useEffect, useState } from 'react';
-import { Heading, Image, HStack, VStack, Input, Text, Button, Select, IconButton, Spacer, Divider, Spinner} from '@chakra-ui/react';
+import { Heading, Image, HStack, VStack, Input, Text, Button, Select, IconButton, Spacer } from '@chakra-ui/react';
 import logo from "../assets/logo.png" 
 import { MdOutlineExitToApp, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdDashboard } from "react-icons/md";
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
+import Tests from './testruns/tests'
 
 const formulaRed = "#AA1F26"
 
@@ -38,33 +39,8 @@ const Dashboard = () => {
             <Spacer/>
             <IconButton icon={<MdKeyboardArrowRight />} h="100%" aria-label='left' variant="ghost"/>
             </HStack>
-            <VStack  w="100%" bgColor="#F9F4F4" p="5" spacing="5">
-                <VStack className="dispatcher" w="100%" bgColor="white" overflowY="scroll" >
-                    <HStack bgColor="white" w="100%" h="90%" p="2.5" justify="space-between">
-                        <Text fontFamily="Geist Mono" fontSize="12px" display={{base:"none", md:"flex"}}>01/29/23:</Text>
-                        <Text fontFamily="Geist Mono" size="sm">Test 3</Text>
-                        <Spacer/>
-                        <Text fontFamily="Geist Mono" pr="2.5">Running</Text>
-                        <Text fontFamily="Geist Mono" textColor={formulaRed}>Cancel</Text>
-                    </HStack>
-                    <Divider w="98%" bgColor="black"/>
-                    <HStack bgColor="white" w="100%" h="90%" p="2.5" justify="space-between">
-                        <Text fontFamily="Geist Mono" fontSize="12px" display={{base:"none", md:"flex"}}>01/29/23:</Text>
-                        <Text fontFamily="Geist Mono" size="sm">Test 2</Text>
-                        <Spacer/>
-                        <Text fontFamily="Geist Mono" pr="2.5"><Spinner size='xs' mr="2.5"/>In Queue</Text>
-                        <Text fontFamily="Geist Mono" textColor={formulaRed}>Cancel</Text>
-                    </HStack>
-                    <Divider w="98%" bgColor="black"/>
-
-                    <HStack bgColor="white" w="100%" h="90%" p="2.5" justify="space-between">
-                        <Text fontFamily="Geist Mono" fontSize="12px" display={{base:"none", md:"flex"}}>01/29/23:</Text>
-                        <Text fontFamily="Geist Mono" size="sm">Test 1</Text>
-                        <Spacer/>
-                        <Text fontFamily="Geist Mono" pr="2.5">Completed</Text>
-                        <Text fontFamily="Geist Mono" textColor={formulaRed}>✔</Text>
-                    </HStack>
-                </VStack>
+            <VStack w="100%" bgColor="#F9F4F4" p="5" spacing="5">
+                <Tests />
                 <HStack w="100%" justifyContent={{base:"start", md:"space-between"}} flexWrap={{base:"wrap", md:"nowrap"}} spacing="5">
                     <VStack w={{base:"100%", md:"49%"}} h="100%"bgColor="white" p="5">
                             <Text>Orchestrator Status</Text>
