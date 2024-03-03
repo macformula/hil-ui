@@ -1,10 +1,9 @@
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Heading, Image, HStack, VStack, Input, Text, Button, Select, IconButton, Spacer } from '@chakra-ui/react';
 import logo from "../assets/logo.png" 
 import { MdOutlineExitToApp, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdDashboard } from "react-icons/md";
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import Tests from './testruns/tests'
-
 const formulaRed = "#AA1F26"
 
 const Dashboard = () => {
@@ -15,6 +14,38 @@ const Dashboard = () => {
         // For now, just navigate to the "/dashboard" route
         navigate('/');
     };
+
+    const subscription = "";
+
+    useEffect(() => {
+      const ws = new WebSocket(
+        "ws://api.macformularacing.com/starttest"
+      );
+  
+      ws.onopen = () => {
+        console.log("Connection Established!");
+        ws.send(JSON.stringify(subscription));
+      };
+      ws.onmessage = (event) => {
+        const response = JSON.parse(event.data);
+        console.log(response);
+        //ws.close();
+      };
+      ws.onclose = () => {
+        console.log("Connection Closed!");
+        //initWebsocket();
+      };
+  
+      ws.onerror = () => {
+        console.log("WS Error");
+      };
+  
+      return () => {
+        ws.close();
+      };
+    }, []);
+
+
 
     return (
         <VStack h="100vh" p="3">
@@ -31,13 +62,13 @@ const Dashboard = () => {
                     textColor="white"
                     _hover={{ backgroundColor: 'gray' }}
                     onClick={handleContinue}
-                    />
+                />
             </HStack>
             <HStack mt="10px" h="3%" w="100%" justify="space-between">
-            <IconButton icon={<MdKeyboardArrowLeft />} h="100%" aria-label='left' variant="ghost"/>
-            <Button leftIcon={<MdDashboard color={formulaRed}/>} variant="ghost" bgColor="#F9F4F4" _hover={{bgColor:"#F1E4E4"}} borderRadius="0px">Dashboard</Button>
-            <Spacer/>
-            <IconButton icon={<MdKeyboardArrowRight />} h="100%" aria-label='left' variant="ghost"/>
+                <IconButton icon={<MdKeyboardArrowLeft />} h="100%" aria-label='left' variant="ghost"/>
+                <Button leftIcon={<MdDashboard color={formulaRed}/>} variant="ghost" bgColor="#F9F4F4" _hover={{bgColor:"#F1E4E4"}} borderRadius="0px">Dashboard</Button>
+                <Spacer/>
+                <IconButton icon={<MdKeyboardArrowRight />} h="100%" aria-label='left' variant="ghost"/>
             </HStack>
             <VStack w="100%" bgColor="#F9F4F4" p="5" spacing="5">
                 <Tests />
@@ -47,10 +78,8 @@ const Dashboard = () => {
                             
                     </VStack>
                     <VStack w={{base:"100%", md:"49.8%"}} bgColor="white" p="5">
-                            <Select variant="flushed" placeholder='Select a Sequence' focusBorderColor="black" >
-                                <option value="sequence1">Sequence 1</option>
-                                <option value="sequence2">Sequence 2</option>
-                                <option value="sequence3">Sequence 3</option>
+                            <Select variant="flushed" placeholder='Select a Sequence' focusBorderColor="black">
+
                             </Select>
                             <Input variant="flushed" focusBorderColor="black" placeholder='Input Metadata'></Input>
                             <Button w="100%"  bgColor="black" textColor="white" _hover={{backgroundColor:"gray"}} >Run Test</Button>
