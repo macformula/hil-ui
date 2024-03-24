@@ -4,7 +4,7 @@ import { connect, sendMsg} from '../../api/websocket';
 import { useEffect } from 'react';
 
 const Dashboard: React.FC = () => {
-    const socket = new WebSocket("ws://api.macformularacing.com/starttest");
+    const socket = new WebSocket("ws://api.macformularacing.com/sequences");
 
     socket.onopen = () => {
         console.log("WebSocket connection established successfully");
