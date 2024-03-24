@@ -1,13 +1,36 @@
 // import React from 'react';
-import { Box, Flex, Heading, Image, HStack, VStack, Input, Text, Checkbox, Button, Link as ChakraLink} from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, HStack, VStack, Input, Icon, Text, Checkbox, Spacer, Button, Link as ChakraLink, Divider} from '@chakra-ui/react';
 import logo from "../assets/logo.png" 
 import bitmapImage from "../assets/formula-bitmap.png"
 import { FaGithub, FaWrench } from 'react-icons/fa';
-
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
-
+import Update, { Status } from './patch_notes/update';
 
 const formulaRed = "#AA1F26"
+
+//all patch notes and updates text to alert members
+const updatesData = [
+  {
+    text: "New Website UI is up and running.",
+    date: "2024-03-22",
+    status: Status.Green,
+  },
+  {
+    text: "There seems to be a slight problem with running CAN tests, we are currently fixing the issue.",
+    date: "2024-03-21",
+    status: Status.Orange,
+  },
+  {
+    text: "Everything is cooked, the website will be fixed as soon as possible. 🙇‍♂️",
+    date: "2024-03-20",
+    status: Status.Red,
+  },
+  {
+    text: "The website is up and running!",
+    date: "2024-03-12",
+    status: Status.Green,
+  },
+];
 
 const Login = () => {
     const navigate = useNavigate(); // Initialize the useNavigate hook
@@ -15,7 +38,7 @@ const Login = () => {
     const handleContinue = () => {
         // Perform any necessary logic before navigating
         // For now, just navigate to the "/dashboard" route
-        navigate('/dashboard');
+        navigate('/hil');
     };
 
   return (
@@ -31,14 +54,13 @@ const Login = () => {
               <Heading size={{base:"md", lg:"lg"}} textColor={formulaRed}>HIL Interface</Heading>
             </HStack>
             <Heading as='h1' size={{base:"3xl", lg:"4xl"}} mb="10px">Welcome Back</Heading>
-            <Text w={{base:"90%", md:"70%"}}   mb="20px" >Here are the latest updates on the HIL interface. Website not functioning correctly, contact <ChakraLink textColor="#3E92CC" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" isExternal>Hady Ibrahim.</ChakraLink></Text>
-            <Input isDisabled={true} w={{base:"90%", md:"70%"}}  mb="20px" variant='flushed' placeholder='Email' focusBorderColor="black"/>
-            <Input isDisabled={true} w={{base:"90%", md:"70%"}}  mb="20px" variant='flushed' placeholder='Password' focusBorderColor="black"/>
-            <Box w={{base:"90%", md:"70%"}}  mb="20px" display="flex" justifyContent="space-between">
-              <Checkbox>Remember me</Checkbox>
-              <ChakraLink>Forget Password?</ChakraLink>
+            <Text w={{base:"90%", md:"70%"}} >Here are the latest updates on the HIL interface. Website not functioning correctly? Contact <ChakraLink textColor="#3E92CC" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" isExternal>Hady Ibrahim.</ChakraLink></Text>
+            <Divider w={{base:"90%", md:"70%"}} colorScheme="blackAlpha" />
+            <Box w={{base:"90%", md:"70%"}} h="40%" bgColor="white" overflowY="scroll" mb="20px" >
+            {updatesData.map((update, index) => (
+              <Update key={index} {...update} />
+            ))}
             </Box>
-            <Button isDisabled={true} w={{base:"90%", md:"70%"}}  bgColor="black" textColor="white" _hover={{backgroundColor:"gray"}} >Sign up</Button>
             <Button isDisabled={true} w={{base:"90%", md:"70%"}}  leftIcon={<FaGithub/>} bgColor="black" textColor="white" _hover={{backgroundColor:"gray"}} >Sign In with Github</Button>
             <Button w={{base:"90%", md:"70%"}}  onClick={handleContinue} leftIcon={<FaWrench/>} bgColor="black" textColor="white" _hover={{backgroundColor:"gray"}} >Continue</Button>
           </VStack>
