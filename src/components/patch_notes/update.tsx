@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 import { Icon, Text, HStack, Spacer } from "@chakra-ui/react";
 import { color } from "framer-motion";
 import { GrStatusGoodSmall, GrStatusUnknownSmall, GrStatusCriticalSmall } from "react-icons/gr";

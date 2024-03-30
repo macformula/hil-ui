@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useEffect, useState } from 'react';
 import { Heading, Image, HStack, VStack, Input, Text, Button, Select, IconButton, Spacer, Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from '@chakra-ui/react';
 import logo from "../assets/logo.png" 

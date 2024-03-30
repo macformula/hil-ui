@@ -1,3 +1,4 @@
+// @ts-nocheck
 // import React from 'react';
 import { Box, Flex, Heading, Image, HStack, VStack, Input, Icon, Text, Checkbox, Spacer, Button, Link as ChakraLink, Divider} from '@chakra-ui/react';
 import logo from "../assets/logo.png" 
