@@ -1,28 +1,54 @@
 import { HStack, VStack, Input, Text, Button, Select} from '@chakra-ui/react';
 import Tests from '../testruns/tests'
-import { connect, sendMsg} from '../../api/websocket';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { io } from "socket.io-client";
+import WebSocketCall from "../../api/WebSocketCall";
 
-const Dashboard: React.FC = () => {
-    const socket = new WebSocket("ws://api.macformularacing.com/sequences");
+const Dashboard = () => {
+    const [socketInstance, setSocketInstance] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [buttonStatus, setButtonStatus] = useState(false);
 
-    socket.onopen = () => {
-        console.log("WebSocket connection established successfully");
+    useEffect(() => {
+        if (true) {
+            const socket = io("http://api.macformularacing.com", {
+                /* @ts-ignore */
+                // cors: {
+                //     origin: "http://dev.macformularacing.com",
+                // },
+            });
+            {/* @ts-ignore */}
+            setSocketInstance(socket);
+        
+            socket.on("connect", () => {
+                console.log("Socket connected");
+                setLoading(false);
+                console.log(socket);
+            });
+        
+            socket.on("disconnect", () => {
+                console.log("Socket disconnected");
+            });
+        
+            return function cleanup() {
+                socket.disconnect();
+            };
+        }
+    }, [buttonStatus]);
+
+    const handleClick = () => {
+        if (buttonStatus === false) {
+            setButtonStatus(true);
+        } else {
+            setButtonStatus(false);
+        }
     };
-    
-    socket.onerror = (error) => {
-        console.error("WebSocket connection error:", error);
-    };
-    
-    socket.onclose = (event) => {
-        console.log("WebSocket connection closed:", event);
-    };
+
         
     // connect();
 
-    function send(): void {
+    const send = () => {
         console.log("1");
-        sendMsg(1);
     }
 
     return (
@@ -32,7 +58,6 @@ const Dashboard: React.FC = () => {
                 <HStack w="100%" h="100%" justifyContent={{base:"start", md:"space-between"}} flexWrap={{base:"wrap", md:"nowrap"}} align="top" spacing="5">
                     <VStack w={{base:"100%", md:"49%"}} h="100%" bgColor="white" p="5">
                             <Text>Orchestrator Status</Text>
-                            
                     </VStack>
                     <VStack w={{base:"100%", md:"49.8%"}} bgColor="white" p="5">
                             <Select variant="flushed" placeholder='Select a Sequence' focusBorderColor="black">
@@ -44,6 +69,17 @@ const Dashboard: React.FC = () => {
                     </VStack>
                 </HStack>
             </VStack>
+            <>
+            {!buttonStatus ? (
+                    <button onClick={handleClick}>turn chat on</button>
+                ) : (
+                    <div>
+                    <button onClick={handleClick}>turn chat off</button>
+                    <div className="line">
+                        {!loading && <WebSocketCall socket={socketInstance} />}
+                    </div>
+                    </div>
+                )}</>
         </VStack>
     );
 };
