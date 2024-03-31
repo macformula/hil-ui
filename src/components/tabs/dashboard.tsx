@@ -13,9 +13,9 @@ const Dashboard = () => {
         if (true) {
             const socket = io("https://api.macformularacing.com", {
                 /* @ts-ignore */
-                // cors: {
-                //     origin: "http://dev.macformularacing.com",
-                // },
+                cors: {
+                    origin: "https://dev.macformularacing.com",
+                },
             });
             {/* @ts-ignore */}
             setSocketInstance(socket);
