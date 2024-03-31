@@ -11,7 +11,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (true) {
-            const socket = io("http://api.macformularacing.com", {
+            const socket = io("https://api.macformularacing.com", {
                 /* @ts-ignore */
                 // cors: {
                 //     origin: "http://dev.macformularacing.com",
