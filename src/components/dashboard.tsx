@@ -22,7 +22,15 @@ const Dashboard = () => {
 
       ws.onopen = () => {
           console.log("Connection Established!");
-          ws.send("aaaaa")
+
+          const message = {
+            task: "recover",
+            parameter: "hi"
+          };
+
+          console.log("here1");
+          ws.send(JSON.stringify(message))
+          console.log("here2")
       };
 
       ws.onmessage = (event) => {
