@@ -24,8 +24,8 @@ const Dashboard = () => {
           console.log("Connection Established!");
 
           const message = {
-            task: "recover",
-            parameter: "hi"
+            "task": "recover",
+            "parameter": "hi"
           };
 
           console.log("here1");
