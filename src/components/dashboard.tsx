@@ -15,37 +15,38 @@ const Dashboard = () => {
         navigate('/');
     };
 
-    const subscription = "";
-
     useEffect(() => {
       const ws = new WebSocket(
-        "ws://api.macformularacing.com/starttest"
+        "wss://api.macformularacing.com/test"
       );
-  
+
       ws.onopen = () => {
-        console.log("Connection Established!");
-        ws.send(JSON.stringify(subscription));
+          console.log("Connection Established!");
+
+          const message = {
+            "task": "recover",
+            "parameter": "hi"
+          };
+
+          console.log("here1");
+          ws.send(JSON.stringify(message))
+          console.log("here2")
       };
+
       ws.onmessage = (event) => {
-        const response = JSON.parse(event.data);
-        console.log(response);
-        //ws.close();
+          console.log("received")
+          console.log(event.data);
+          return false
       };
+
       ws.onclose = () => {
         console.log("Connection Closed!");
-        //initWebsocket();
       };
-  
+
       ws.onerror = () => {
         console.log("WS Error");
       };
-  
-      return () => {
-        ws.close();
-      };
     }, []);
-
-
 
     return (
         <VStack h="100vh" p="3">
