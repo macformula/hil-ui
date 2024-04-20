@@ -1,11 +1,11 @@
 import { useCallback, useEffect } from 'react';
 
-export const useWebSocket = (setSequences: React.Dispatch<React.SetStateAction<any[]>>) => {
+export const useWebSocketTest = (setSequences: React.Dispatch<React.SetStateAction<any[]>>) => {
   useEffect(() => {
     const ws = new WebSocket("wss://api.macformularacing.com/test");
 
     ws.onopen = () => {
-      console.log("Connection Established!");
+      console.log("Connection Established with Tests Endpoint");
       const message = {
         "task": "start",
         "parameter": ""
@@ -14,7 +14,7 @@ export const useWebSocket = (setSequences: React.Dispatch<React.SetStateAction<a
     };
 
     ws.onmessage = (event) => {
-      console.log("received");
+      console.log("received from Test");
       if (event.data.startsWith('{"0":')) {
         const sequencesData: { [key: string]: any } = JSON.parse(event.data);
         const sequencesArray = Object.values(sequencesData);
@@ -23,11 +23,11 @@ export const useWebSocket = (setSequences: React.Dispatch<React.SetStateAction<a
     };
 
     ws.onclose = () => {
-      console.log("Connection Closed!");
+      console.log("Connection Closed with Tests!");
     };
 
     ws.onerror = () => {
-      console.log("WS Error");
+      console.log("WS Error with Test");
     };
 
     return () => {
