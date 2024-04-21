@@ -26,7 +26,6 @@ export const useWebSocketStatus = (setTest: React.Dispatch<React.SetStateAction<
     ws.onmessage = (event) => {
       console.log("Received from Status");
       const sequencesData = JSON.parse(event.data);
-    //   const sequencesArray = Object.values(sequencesData);
       setTest(sequencesData);
       console.log("in websocket", sequencesData);
     };

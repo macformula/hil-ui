@@ -26,7 +26,7 @@ interface TestData {
     TestId: string;
     Progress: TestProgress;
     QueueLength: number;
-    FatalError: any;  // Adjusting the type here to match your provided input JSON structure
+    FatalError: any;  
 }
 
 const TestStatus = ({ data }: { data: TestData }) => {

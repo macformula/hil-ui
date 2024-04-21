@@ -1,7 +1,7 @@
 // @ts-nocheck
 
 import React, { useState } from 'react';
-import { VStack, Select, Input, Button, Text, HStack, StepStatus } from '@chakra-ui/react';
+import { VStack, Select, Input, Button, Text, HStack, StepStatus, useToast } from '@chakra-ui/react';
 import Tests from '../sub-components/tests';
 import { useWebSocketTest } from '../../api/ws-Test'; 
 import { useWebSocketStatus } from '../../api/ws-Status';
@@ -23,10 +23,10 @@ interface TestProgress {
     Sequence: {
         Name: string;
         Desc: string;
-        States: StateData[] | null;  // States can be null
+        States: StateData[] | null;  
     };
-    StatePassed: boolean[] | null;  // StatePassed can be null
-    StateDuration: number[] | null;  // StateDuration can be null
+    StatePassed: boolean[] | null;  
+    StateDuration: number[] | null; 
 }
 
 interface TestData {
@@ -57,11 +57,13 @@ const jsonData  = {
 
 const Dashboard: React.FC = () => {
     const [sequences, setSequences] = useState<Sequence[]>([]);
-    const [test, setTest] = useState<TestData>(jsonData); // Updated to hold a single TestData object
-
+    const [test, setTest] = useState<TestData>(jsonData); // Holds a temp TestData object
+    const toast = useToast()
     const [selectedSequenceIndex, setSelectedSequenceIndex] = useState<string | undefined>(undefined);
     const { sendMessage } = useWebSocketTest(setSequences); 
-    useWebSocketStatus(setTest);  // Assuming this hook might also need an update to handle new data structure
+    const formulaRed = "#AA1F26";
+
+    useWebSocketStatus(setTest);  
     const sequencesDropdown = sequences.map((item, index) => (
         <option key={index} value={index.toString()}>
             {item.Name}
@@ -76,8 +78,22 @@ const Dashboard: React.FC = () => {
         };
         sendMessage(message);
         console.log("sent:", JSON.stringify(message));
+        toast({
+            title: 'Test Sent!',
+            description: "Your test will take 1-2 minutes to load.",
+            status: 'success',
+            duration: 9000,
+            isClosable: true,
+        })
       } else {
         console.log("No sequence selected");
+        toast({
+            title: 'Please Select a Option',
+            description: "Not seeing your option? Contact ___ to get it resolved.",
+            status: 'warning',
+            duration: 9000,
+            isClosable: true,
+        })
       }
     };
 
@@ -89,13 +105,6 @@ const Dashboard: React.FC = () => {
                     <VStack w={{ base: "100%", md: "49%" }} h={{ base: "auto", md: "100%" }}bgColor="white" p="5" align="right">
                         <Text>Orchestrator Status</Text>
                         <TestStatus data={test}/>
-                        
-
-
-
-
-
-
                     </VStack>
                     <VStack w={{ base: "100%", md: "49.8%" }} bgColor="white" p="3">
                         <Select variant="flushed" placeholder='Select a Sequence' focusBorderColor="black" onChange={(e) => setSelectedSequenceIndex(e.target.value)}>
