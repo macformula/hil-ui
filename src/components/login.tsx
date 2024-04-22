@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Box, Flex, Heading, Image, HStack, VStack, Input, Text, Checkbox, Button, Link, Divider} from '@chakra-ui/react';
+import { Box, Flex, Heading, Image, HStack, VStack, Text, Button, Link, Divider} from '@chakra-ui/react';
 import logo from "../assets/logo.png" 
 import bitmapImage from "../assets/formula-bitmap.png"
 import { FaGithub, FaWrench } from 'react-icons/fa';
