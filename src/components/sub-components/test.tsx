@@ -27,10 +27,10 @@ const Test: React.FC<TestProps> = ({ name, date, status }) => {
         return <Text textColor="green">✔</Text>;
       case Status.Failed:
         return <Text textColor={formulaRed}>✖</Text>;
-      case Status.Running:
+      case Status.Queued:
         // return <Button size="xs" colorScheme="red">Cancel</Button>;
         return <Text textColor={formulaRed}>Cancel</Text>;
-      case Status.Queued:
+      case Status.Running:
         return <TailSpin color={formulaRed} strokeWidth={4} height={30} width={30} radius={5} />;
       default:
         return null;
