@@ -1,5 +1,5 @@
 import { VStack} from '@chakra-ui/react';
-import Test, { Status } from './test'
+import Test, { Status } from './test_mock'
 
 const Tests = () => {
   return (
