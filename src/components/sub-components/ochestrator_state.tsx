@@ -81,7 +81,7 @@ const TestStatus = ({ data }: { data: TestData }) => {
 
             {showError && (
                 <Box bg="red.500" p={4}>
-                    <Text color="white">A fatal error has occurred, please reset the pi.</Text>
+                    <Text color="white">A fatal error has occurred, please contact a lead to have the error fixed.</Text>
                 </Box>
             )}
         </VStack>
