@@ -4,7 +4,7 @@ import { Heading, Image, HStack, VStack, Input, Text, Button, Select, IconButton
 import logo from "../assets/logo.png" 
 import { MdOutlineExitToApp,MdAnalytics , MdDashboard } from "react-icons/md";
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
-import Tests from './testruns/tests'
+import Tests from './sub-components/tests'
 import Dashboard from './tabs/dashboard';
 import Report from './tabs/report';
 
@@ -16,9 +16,6 @@ const Internal = () => {
         // Perform any necessary logic before navigating
         // For now, just navigate to the "/dashboard" route
         navigate('/');
-    };
-    const toReport = () => {
-      navigate('/report');
     };
 
     return (
@@ -34,9 +31,11 @@ const Internal = () => {
                     h="100%"
                     aria-label='Exit'
                     bgColor="black"
+                    borderRadius={0} 
+                    _hover={{backgroundColor:"#4c4c4c"}}
                     textColor="white"
-                    _hover={{ backgroundColor: 'gray' }}
                     onClick={backToLogin}
+                    mr="3"
                 />
             </HStack>
             <Tabs w="100%" pt="3" position="relative" align='start' variant="unstyled">
@@ -50,11 +49,11 @@ const Internal = () => {
                 bg={formulaRed}
                 borderRadius="1px"
               />
-              <TabPanels>
-                <TabPanel>
+              <TabPanels p="0">
+                <TabPanel p="0" pt="3">
                   <Dashboard/>
                 </TabPanel>
-                <TabPanel>
+                <TabPanel p="0" pt="3">
                   <Report/>
                 </TabPanel>
               </TabPanels>

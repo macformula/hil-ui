@@ -1,9 +1,6 @@
 // @ts-nocheck
 import { Heading, Image, HStack, VStack, Input, Text, Button, Select, IconButton, Spacer } from '@chakra-ui/react';
-import Tests from '../testruns/tests'
-
-
-
+import Tests from '../sub-components/tests'
 
 const Report = () => {
     return (
