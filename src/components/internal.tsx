@@ -4,7 +4,7 @@ import { Heading, Image, HStack, VStack, Input, Text, Button, Select, IconButton
 import logo from "../assets/logo.png" 
 import { MdOutlineExitToApp,MdAnalytics , MdDashboard } from "react-icons/md";
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
-import Tests from './sub-components/tests'
+import Tests from './sub-components/tests_mock'
 import Dashboard from './tabs/dashboard';
 import Report from './tabs/report';
 

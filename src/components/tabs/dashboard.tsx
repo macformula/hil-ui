@@ -2,12 +2,12 @@
 
 import React, { useState } from 'react';
 import { VStack, Select, Input, Button, Text, HStack, StepStatus, useToast, Box, Divider } from '@chakra-ui/react';
-import Tests from '../sub-components/tests';
+import Tests from '../sub-components/tests_mock';
 import { useWebSocketTest } from '../../api/ws-Test'; 
 import { useWebSocketStatus } from '../../api/ws-Status';
 import { useWebSocketQueue } from '../../api/ws-Queue';
 import TestStatus from "../sub-components/ochestrator_state"
-import TestGood from '../sub-components/test_good'
+import Test from '../sub-components/test'
 
 interface Sequence {
     Name: string;
@@ -113,12 +113,11 @@ const Dashboard: React.FC = () => {
     return (
       <VStack p="3">
             <VStack w="100%" bgColor="#F9F4F4" p="3" spacing="3">
-                {/* <Tests /> */}
                 <Box w="100%" h="200px" bgColor="white" overflowY="scroll">
                     {queue.map((item, index) => (
                         <>
-                            <TestGood UUID={item.UUID} id={index+1} name={item.SequenceName} />
-                            <Divider/>
+                            <Test key={index} UUID={item.UUID} id={index+1} name={item.SequenceName} />
+                            <Divider key={`div-${index}`}/>
                         </>
                     ))}
                 </Box>

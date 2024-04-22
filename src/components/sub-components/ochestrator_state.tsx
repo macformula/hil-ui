@@ -72,7 +72,7 @@ const TestStatus = ({ data }: { data: TestData }) => {
 
                     return (
                         
-                        <Text fontFamily="Consolas" fontSize="14" key={index} color={color}>
+                        <Text key={index} fontFamily="Consolas" fontSize="14" color={color}>
                             {label}
                         </Text>
                     );
