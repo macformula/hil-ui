@@ -1,4 +1,3 @@
-// @ts-nocheck
 // import React from 'react';
 import { Box, Flex, Heading, Image, HStack, VStack, Input, Text, Checkbox, Button, Link, Divider} from '@chakra-ui/react';
 import logo from "../assets/logo.png" 
@@ -7,31 +6,9 @@ import { FaGithub, FaWrench } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import Update, { Status }  from './sub-components/patch_notes';
 
-const formulaRed = "#AA1F26"
 
-//all patch notes and updates text to alert members
-const updatesData = [
-  {
-    text: "New Website UI is up and running.",
-    date: "2024-03-22",
-    status: Status.Green,
-  },
-  {
-    text: "There seems to be a slight problem with running CAN tests, we are currently fixing the issue.",
-    date: "2024-03-21",
-    status: Status.Orange,
-  },
-  {
-    text: "Everything is cooked, the website will be fixed as soon as possible. 🙇‍♂️",
-    date: "2024-03-20",
-    status: Status.Red,
-  },
-  {
-    text: "The website is up and running!",
-    date: "2024-03-12",
-    status: Status.Green,
-  },
-];
+
+const formulaRed = "#AA1F26"
 
 const Login = () => {
     const navigate = useNavigate(); // Initialize the useNavigate hook
