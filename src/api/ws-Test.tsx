@@ -14,7 +14,7 @@ export const useWebSocketTest = (setSequences: React.Dispatch<React.SetStateActi
     };
 
     ws.onmessage = (event) => {
-      console.log("received from Test");
+      // console.log("Received Sequences from Test");
       if (event.data.startsWith('{"0":')) {
         const sequencesData: { [key: string]: any } = JSON.parse(event.data);
         const sequencesArray = Object.values(sequencesData);

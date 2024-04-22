@@ -56,7 +56,7 @@ const TestStatus = ({ data }: { data: TestData }) => {
                     let color = "gray";
                     let label = `State ${index + 1}: `;
                     if (index < StateIndex) {
-                        color = StatePassed[index] ? "green" : "red";
+                        color = StatePassed[index] ? "green" : "formulaRed";
                         label += StatePassed[index] ? "Passed" : "Failed";
                         label += ` (${(StateDuration[index] / 1000000).toFixed(2)}s)`;
                     } else if (index === StateIndex) {
@@ -72,7 +72,7 @@ const TestStatus = ({ data }: { data: TestData }) => {
 
                     return (
                         
-                        <Text key={index} color={color}>
+                        <Text fontFamily="Consolas" fontSize="14" key={index} color={color}>
                             {label}
                         </Text>
                     );
