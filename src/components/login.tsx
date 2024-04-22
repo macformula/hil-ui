@@ -43,7 +43,7 @@ const Login = () => {
               </Box>
               <Divider/>
             </Box>
-            <Button w={{base:"90%", md:"70%"}}  leftIcon={<FaGithub/>} bgColor="black" textColor="white" borderRadius={0} _hover={{backgroundColor:"#4c4c4c"}} >Sign In with Github</Button>
+            <Button w={{base:"90%", md:"70%"}} isDisabled={true} leftIcon={<FaGithub/>} bgColor="black" textColor="white" borderRadius={0} _hover={{backgroundColor:"#4c4c4c"}} >Sign In with Github</Button>
             <Button w={{base:"90%", md:"70%"}}  onClick={handleContinue} leftIcon={<FaWrench/>} bgColor="black" textColor="white" borderRadius={0} _hover={{backgroundColor:"#4c4c4c"}} >Continue</Button>
           </VStack>
         </HStack>
